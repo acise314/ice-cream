@@ -11,16 +11,45 @@
 </head>
 
 <body>
-  <div> I SCREAM FOR ICE CREAM! DO YOU SCREAM FOR ICE CREAM? 🍧🍨🍦</div>
   <a-scene>
 
-    <a-cone color = "#664216" rotation = "180 0 0" position = "0 0 -5" radius-bottom = "1" height = "3" roughness = "1"></a-cone>
-    <a-sphere color = "pink" position = "0 1.5 -5" radius = "1"></a-sphere>
-    <a-sphere color = "#84cbfa" position = "0 3 -5" radius = "1"></a-sphere>
+    <a-cone color="#664216" rotation="180 0 0" position="0 0 -5" radius-bottom="1" height="3" roughness="1"></a-cone>
+    <a-sphere color="pink" position="0 1.5 -5" radius="1"></a-sphere>
 
-    <a-sphere color = "#d184fa" position = "0 4.5 -5" radius = "1"></a-sphere>
+
+    <a-entity geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink" position="0 0.9 -5"
+      rotation="90 0 0">
+    </a-entity>
+
+
+    <a-sphere color="#84cbfa" position="0 3 -5" radius="1"></a-sphere>
+    <a-entity geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #84cbfa"
+      position="0 2.4 -5" rotation="90 0 0">
+    </a-entity>
+
+
+
+
+    <a-sphere color="#d184fa" position="0 4.5 -5" radius="1"></a-sphere>
+
+    <a-entity geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #d184fa"
+      position="0 3.9 -5" rotation="90 0 0">
+    </a-entity>
+
+
+    <!-- 
+    <a-sphere color="#d184fa" position="0 3.75 -4" radius="0.25"></a-sphere>
+    <a-sphere color="#d184fa" position="0 3.75 -6" radius="0.25"></a-sphere>
+
+    <a-sphere color="#d184fa" position="1 3.75 -5" radius="0.25"></a-sphere>
+    <a-sphere color="#d184fa" position="-1 3.75 -5" radius="0.25"></a-sphere> -->
+
+
+
+
+
   </a-scene>
-  
+
 </body>
 
 </html>
