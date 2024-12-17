@@ -15,13 +15,13 @@
     <style>
         button {
             background-color: #4CAF50;
-            /* Green */
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 25px;
+            display: flex;
         }
 
         button:hover {
@@ -29,35 +29,87 @@
         }
 
         select {
-            display: block;
+            display: inline-block;
             margin-bottom: 10px;
+            font-size: 16px;
+            margin-left: 50px;
+            
+
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 30px;
+
         }
+        select:hover {
+            background-color: #45a049;
+        }
+
+
+        h1 {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            display: block;
+        }
+
+        label {
+            font-size: 30px;
+            margin-right: 10px;
+            margin-left: 50px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .form-section {
+            padding-bottom: 20px;
+            margin-bottom: 0px;
+            margin-top: 30px;
+            display: block;
+        }
+    </style>
     </style>
 
 </head>
 
 <body>
     <h1>Welcome to my ice cream 3D visualization!</h1>
-    <label for="cones">How many ice cream cone scoops would you like? </label>
 
-    <select name="cones" id="cones">
-        <option value=0>0</option>
-        <option value=1>1</option>
-        <option value=2>2</option>
-        <option value=3>3</option>
-    </select>
+    <div class="form-section">
+        <label for="cones">How many ice cream cone scoops would you like? </label>
+
+        <select name="cones" id="cones">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+        </select>
+    </div>
     <script>
         var coneCount = document.getElementById("cones");
     </script>
 
 
     <button onclick="save()">Enter visualization</button>
-    <!-- enter next page -->
+
+
     <script>
         function save() {
             const selectedNum = document.getElementById('cones').value
             localStorage.setItem('coneCount', selectedNum);
-            alert('Value saved: ' + selectedNum);
+            // alert('Value saved: ' + selectedNum);
             window.location.href = "3D.html";
         }
     </script>
