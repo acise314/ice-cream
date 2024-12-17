@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- next steps: 
+ 
+1. add colours chosing
+2.  then possibly infinite number of ice cream cones!
+
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        button {
+            background-color: #4CAF50;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        select {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Welcome to my ice cream 3D visualization!</h1>
+    <label for="cones">How many ice cream cone scoops would you like? </label>
+
+    <select name="cones" id="cones">
+        <option value=0>0</option>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+    </select>
+    <script>
+        var coneCount = document.getElementById("cones");
+    </script>
+
+
+    <button onclick="save()">Enter visualization</button>
+    <!-- enter next page -->
+    <script>
+        function save() {
+            const selectedNum = document.getElementById('cones').value
+            localStorage.setItem('coneCount', selectedNum);
+            alert('Value saved: ' + selectedNum);
+            window.location.href = "3D.html";
+        }
+    </script>
+</body>
+
+</html>

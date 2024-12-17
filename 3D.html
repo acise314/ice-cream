@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+</head>
+
+<body>
+  <a-scene>
+
+    <a-cone id="cone" color="#664216" rotation="180 0 0" position="0 0 -5" radius-bottom="1" height="3"
+      roughness="1"></a-cone>
+
+    <a-sphere id="firstSphere" color="pink" position="0 1.5 -5" radius="1"></a-sphere>
+    <a-entity id="firstBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink"
+      position="0 0.9 -5" rotation="90 0 0">
+    </a-entity>
+
+    <a-sphere id="secondSphere" color="#84cbfa" position="0 3 -5" radius="1"></a-sphere>
+    <a-entity id="secondBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #84cbfa"
+      position="0 2.4 -5" rotation="90 0 0">
+    </a-entity>
+
+    <a-sphere id="thirdSphere" color="#d184fa" position="0 4.5 -5" radius="1"></a-sphere>
+    <a-entity id="thirdBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #d184fa"
+      position="0 3.9 -5" rotation="90 0 0">
+    </a-entity>
+
+
+
+    <!-- 
+    <a-sphere color="#d184fa" position="0 3.75 -4" radius="0.25"></a-sphere>
+    <a-sphere color="#d184fa" position="0 3.75 -6" radius="0.25"></a-sphere>
+
+    <a-sphere color="#d184fa" position="1 3.75 -5" radius="0.25"></a-sphere>
+    <a-sphere color="#d184fa" position="-1 3.75 -5" radius="0.25"></a-sphere> -->
+
+
+
+
+
+  </a-scene>
+  <button id="Change selection" style="position: absolute; top: 10px; left: 10px; padding: 10px;">Change Ice Cream Selection</button>
+
+  <script>
+    document.getElementById('Change selection').addEventListener('click', function () {
+      window.location.href = 'menu.html';
+    });
+
+    window.onload = function () {
+      const savedConeCount = localStorage.getItem('coneCount')
+      const cone = document.getElementById('cone');
+      const top1 = document.getElementById('firstSphere');
+      const bottom1 = document.getElementById('firstBottom');
+      const top2 = document.getElementById('secondSphere');
+      const bottom2 = document.getElementById('secondBottom');
+      const top3 = document.getElementById('thirdSphere');
+      const bottom3 = document.getElementById('thirdBottom');
+      if (savedConeCount == 0) {
+        cone.setAttribute('visible', true);
+        top1.setAttribute('visible', false);
+        bottom1.setAttribute('visible', false);
+        top2.setAttribute('visible', false);
+        bottom2.setAttribute('visible', false);
+        top3.setAttribute('visible', false);
+        bottom3.setAttribute('visible', false);
+      }
+      else if (savedConeCount == 1) {
+        cone.setAttribute('visible', true);
+        top1.setAttribute('visible', true);
+        bottom1.setAttribute('visible', true);
+        top2.setAttribute('visible', false);
+        bottom2.setAttribute('visible', false);
+        top3.setAttribute('visible', false);
+        bottom3.setAttribute('visible', false);
+      }
+      else if (savedConeCount == 2) {
+        cone.setAttribute('visible', true);
+        top1.setAttribute('visible', true);
+        bottom1.setAttribute('visible', true);
+        top2.setAttribute('visible', true);
+        bottom2.setAttribute('visible', true);
+        top3.setAttribute('visible', false);
+        bottom3.setAttribute('visible', false);
+      }
+      else if (savedConeCount == 3) {
+        cone.setAttribute('visible', true);
+        top1.setAttribute('visible', true);
+        bottom1.setAttribute('visible', true);
+        top2.setAttribute('visible', true);
+        bottom2.setAttribute('visible', true);
+        top3.setAttribute('visible', true);
+        bottom3.setAttribute('visible', true);
+      }
+
+
+
+
+
+    }
+  </script>
+</body>
+
+</html>
