@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <style>
+        body {
+            background-color: #c2dfff;
+        }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -74,21 +78,31 @@
         .color-picker {
             margin: 5px;
         }
+
+        .borderr {
+            border: 3px solid #5ea1ed;
+            border-radius: 15px;
+            padding: 50px;
+            background-color: hsl(56, 100%, 97%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: justify;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to my ice cream 3D visualization!</h1>
+    <div class="borderr">
+        <h1>Welcome to my ice cream 3D visualization!</h1>
 
-    <div class="form-section">
-        <label for="cones">How many ice cream cone scoops would you like? </label>
-        <select name="cones" id="cones" onchange="generateColorPickers()">
-        </select>
-        <div id="colorPickers"></div>
+        <div class="form-section">
+            <label for="cones">How many ice cream cone scoops would you like? </label>
+            <select name="cones" id="cones" onchange="generateColorPickers()">
+            </select>
+            <div id="colorPickers"></div>
+        </div>
+
+        <button onclick="save()">Enter visualization</button>
     </div>
-
-    <button onclick="save()">Enter visualization</button>
-
     <script>
         const coneSelect = document.getElementById('cones');
         const colorPickersDiv = document.getElementById('colorPickers');
