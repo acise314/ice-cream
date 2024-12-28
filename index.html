@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- next steps: 
- 
-1. add colours chosing
-2.  then possibly infinite number of ice cream cones!
-
-
--->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,8 +25,6 @@
             margin-bottom: 10px;
             font-size: 16px;
             margin-left: 50px;
-
-
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
@@ -43,13 +33,11 @@
             cursor: pointer;
             font-size: 16px;
             margin-bottom: 30px;
-
         }
 
         select:hover {
             background-color: #45a049;
         }
-
 
         h1 {
             font-family: Arial, sans-serif;
@@ -82,47 +70,34 @@
             display: block;
         }
     </style>
-    </style>
 
 </head>
-
 <body>
     <h1>Welcome to my ice cream 3D visualization!</h1>
 
     <div class="form-section">
         <label for="cones">How many ice cream cone scoops would you like? </label>
-
         <select name="cones" id="cones">
-            <option value=0>0</option>
-
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
         </select>
     </div>
-    <script>
-        var coneCount = document.getElementById("cones");
-    </script>
 
 
     <button onclick="save()">Enter visualization</button>
 
-
     <script>
+        const coneSelect = document.getElementById('cones');
+        for (let i = 0; i <= 10; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            coneSelect.appendChild(option);
+        }
+
         function save() {
-            const selectedNum = document.getElementById('cones').value
+            const selectedNum = document.getElementById('cones').value;
             localStorage.setItem('coneCount', selectedNum);
-            // alert('Value saved: ' + selectedNum);
             window.location.href = "3D.html";
         }
     </script>
 </body>
-
 </html>

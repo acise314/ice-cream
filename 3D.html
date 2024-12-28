@@ -35,59 +35,16 @@
     <a-cone id="cone" color="#664216" rotation="180 0 0" position="0 0 -5" radius-bottom="1" height="3"
       roughness="1"></a-cone>
 
-    <a-sphere id="firstSphere" color="pink" position="0 1.5 -5" radius="1"></a-sphere>
-    <a-entity id="firstBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink"
-      position="0 0.9 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="secondSphere" color="#84cbfa" position="0 3 -5" radius="1"></a-sphere>
-    <a-entity id="secondBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #84cbfa"
-      position="0 2.4 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="thirdSphere" color="#d184fa" position="0 4.5 -5" radius="1"></a-sphere>
-    <a-entity id="thirdBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #d184fa"
-      position="0 3.9 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="fourthSphere" color="pink" position="0 6 -5" radius="1"></a-sphere>
-    <a-entity id="fourthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink"
-      position="0 5.4 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="fifthSphere" color="#84cbfa" position="0 7.5 -5" radius="1"></a-sphere>
-    <a-entity id="fifthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #84cbfa"
-      position="0 6.9 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="sixthSphere" color="#d184fa" position="0 9 -5" radius="1"></a-sphere>
-    <a-entity id="sixthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #d184fa"
-      position="0 8.4 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="seventhSphere" color="pink" position="0 10.5 -5" radius="1"></a-sphere>
-    <a-entity id="seventhBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink"
-      position="0 9.9 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="eigthSphere" color="#84cbfa" position="0 12 -5" radius="1"></a-sphere>
-    <a-entity id="eigthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #84cbfa"
-      position="0 11.4 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="ninthSphere" color="#d184fa" position="0 13.5 -5" radius="1"></a-sphere>
-    <a-entity id="ninthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: #d184fa"
-      position="0 12.9 -5" rotation="90 0 0">
-    </a-entity>
-
-    <a-sphere id="tenthSphere" color="pink" position="0 15 -5" radius="1"></a-sphere>
-    <a-entity id="tenthBottom" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: pink"
-      position="0 14.4 -5" rotation="90 0 0">
-    </a-entity>
-
-
-
-
+    <script>
+      const colors = ['pink', '#84cbfa', '#d184fa', 'pink', '#84cbfa', '#d184fa', 'pink', '#84cbfa', '#d184fa', 'pink'];
+      for (let i = 0; i < 10; i++) {
+        document.querySelector('a-scene').innerHTML += `
+          <a-sphere id="sphere${i}" color="${colors[i]}" position="0 ${1.5 + i * 1.5} -5" radius="1"></a-sphere>
+          <a-entity id="bottom${i}" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: ${colors[i]}"
+            position="0 ${0.9 + i * 1.5} -5" rotation="90 0 0"></a-entity>
+        `;
+      }
+    </script>
 
   </a-scene>
   <button id="Change selection" style="position: absolute; top: 10px; left: 10px; padding: 10px;">Change Ice Cream
@@ -99,286 +56,22 @@
     });
 
     window.onload = function () {
-      const savedConeCount = localStorage.getItem('coneCount')
+      const savedConeCount = localStorage.getItem('coneCount');
       const cone = document.getElementById('cone');
-      const top1 = document.getElementById('firstSphere');
-      const bottom1 = document.getElementById('firstBottom');
-      const top2 = document.getElementById('secondSphere');
-      const bottom2 = document.getElementById('secondBottom');
-      const top3 = document.getElementById('thirdSphere');
-      const bottom3 = document.getElementById('thirdBottom');
-      const top4 = document.getElementById('fourthSphere');
-      const bottom4 = document.getElementById('fourthBottom');
-      const top5 = document.getElementById('fifthSphere');
-      const bottom5 = document.getElementById('fifthBottom');
-      const top6 = document.getElementById('sixthSphere');
-      const bottom6 = document.getElementById('sixthBottom');
-      const top7 = document.getElementById('seventhSphere');
-      const bottom7 = document.getElementById('seventhBottom');
-      const top8 = document.getElementById('eigthSphere');
-      const bottom8 = document.getElementById('eigthBottom');
-      const top9 = document.getElementById('ninthSphere');
-      const bottom9 = document.getElementById('ninthBottom');
-      const top10 = document.getElementById('tenthSphere');
-      const bottom10 = document.getElementById('tenthBottom');
-      if (savedConeCount == 0) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', false);
-        bottom1.setAttribute('visible', false);
-        top2.setAttribute('visible', false);
-        bottom2.setAttribute('visible', false);
-        top3.setAttribute('visible', false);
-        bottom3.setAttribute('visible', false);
-        top4.setAttribute('visible', false);
-        bottom4.setAttribute('visible', false);
-        top5.setAttribute('visible', false);
-        bottom5.setAttribute('visible', false);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-      else if (savedConeCount == 1) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', false);
-        bottom2.setAttribute('visible', false);
-        top3.setAttribute('visible', false);
-        bottom3.setAttribute('visible', false);
-        top4.setAttribute('visible', false);
-        bottom4.setAttribute('visible', false);
-        top5.setAttribute('visible', false);
-        bottom5.setAttribute('visible', false);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-      else if (savedConeCount == 2) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', false);
-        bottom3.setAttribute('visible', false);
-        top4.setAttribute('visible', false);
-        bottom4.setAttribute('visible', false);
-        top5.setAttribute('visible', false);
-        bottom5.setAttribute('visible', false);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
 
-      else if (savedConeCount == 3) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', false);
-        bottom4.setAttribute('visible', false);
-        top5.setAttribute('visible', false);
-        bottom5.setAttribute('visible', false);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
+      for (let i = 0; i < 10; i++) {
+        const sphere = document.getElementById(`sphere${i}`);
+        const bottom = document.getElementById(`bottom${i}`);
+        
+        if (i < savedConeCount) {
+          cone.setAttribute('visible', true);
+          sphere.setAttribute('visible', true);
+          bottom.setAttribute('visible', true);
+        } else {
+          sphere.setAttribute('visible', false);
+          bottom.setAttribute('visible', false);
+        }
       }
-      else if (savedConeCount == 4) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', false);
-        bottom5.setAttribute('visible', false);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      } else if (savedConeCount == 5) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', false);
-        bottom6.setAttribute('visible', false);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-
-      else if (savedConeCount == 6) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', true);
-        bottom6.setAttribute('visible', true);
-        top7.setAttribute('visible', false);
-        bottom7.setAttribute('visible', false);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-
-      else if (savedConeCount == 7) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', true);
-        bottom6.setAttribute('visible', true);
-        top7.setAttribute('visible', true);
-        bottom7.setAttribute('visible', true);
-        top8.setAttribute('visible', false);
-        bottom8.setAttribute('visible', false);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-
-      else if (savedConeCount == 8) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', true);
-        bottom6.setAttribute('visible', true);
-        top7.setAttribute('visible', true);
-        bottom7.setAttribute('visible', true);
-        top8.setAttribute('visible', true);
-        bottom8.setAttribute('visible', true);
-        top9.setAttribute('visible', false);
-        bottom9.setAttribute('visible', false);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-
-      else if (savedConeCount == 9) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', true);
-        bottom6.setAttribute('visible', true);
-        top7.setAttribute('visible', true);
-        bottom7.setAttribute('visible', true);
-        top8.setAttribute('visible', true);
-        bottom8.setAttribute('visible', true);
-        top9.setAttribute('visible', true);
-        bottom9.setAttribute('visible', true);
-        top10.setAttribute('visible', false);
-        bottom10.setAttribute('visible', false);
-      }
-      else if (savedConeCount == 10) {
-        cone.setAttribute('visible', true);
-        top1.setAttribute('visible', true);
-        bottom1.setAttribute('visible', true);
-        top2.setAttribute('visible', true);
-        bottom2.setAttribute('visible', true);
-        top3.setAttribute('visible', true);
-        bottom3.setAttribute('visible', true);
-        top4.setAttribute('visible', true);
-        bottom4.setAttribute('visible', true);
-        top5.setAttribute('visible', true);
-        bottom5.setAttribute('visible', true);
-        top6.setAttribute('visible', true);
-        bottom6.setAttribute('visible', true);
-        top7.setAttribute('visible', true);
-        bottom7.setAttribute('visible', true);
-        top8.setAttribute('visible', true);
-        bottom8.setAttribute('visible', true);
-        top9.setAttribute('visible', true);
-        bottom9.setAttribute('visible', true);
-        top10.setAttribute('visible', true);
-        bottom10.setAttribute('visible', true);
-      }
-
     }
   </script>
 </body>
