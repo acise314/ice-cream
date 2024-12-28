@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,23 +70,29 @@
             margin-top: 30px;
             display: block;
         }
-    </style>
 
+        .color-picker {
+            margin: 5px;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Welcome to my ice cream 3D visualization!</h1>
 
     <div class="form-section">
         <label for="cones">How many ice cream cone scoops would you like? </label>
-        <select name="cones" id="cones">
+        <select name="cones" id="cones" onchange="generateColorPickers()">
         </select>
+        <div id="colorPickers"></div>
     </div>
-
 
     <button onclick="save()">Enter visualization</button>
 
     <script>
         const coneSelect = document.getElementById('cones');
+        const colorPickersDiv = document.getElementById('colorPickers');
+
         for (let i = 0; i <= 10; i++) {
             const option = document.createElement('option');
             option.value = i;
@@ -93,11 +100,52 @@
             coneSelect.appendChild(option);
         }
 
-        function save() {
+        function generateColorPickers() {
+            console.log('generateColorPickers called');
             const selectedNum = document.getElementById('cones').value;
+            colorPickersDiv.innerHTML = '';
+
+            for (let i = 0; i < selectedNum; i++) {
+                const colorPickerLabel = document.createElement('label');
+                colorPickerLabel.textContent = `Color for scoop ${i + 1}:`;
+
+                const colorInput = document.createElement('input');
+                colorInput.type = 'color';
+                colorInput.id = `color${i}`;
+                colorInput.classList.add('color-picker');
+
+                const div = document.createElement('div');
+                div.appendChild(colorPickerLabel);
+                div.appendChild(colorInput);
+
+                colorPickersDiv.appendChild(div);
+            }
+        }
+
+        function save() {
+            console.log('Save function called');
+            const selectedNum = document.getElementById('cones').value;
+            if (selectedNum == 0) {
+                console.log('No cones selected!');
+                return; 
+            }
+
+            const colors = [];
+            for (let i = 0; i < selectedNum; i++) {
+                console.log(`Adding color for scoop ${i + 1}`);
+                const color = document.getElementById(`color${i}`).value;
+                console.log(`Added color: ${color}`);
+                colors.push(color);
+            }
+
             localStorage.setItem('coneCount', selectedNum);
-            window.location.href = "3D.html";
+            localStorage.setItem('scoopColors', JSON.stringify(colors));
+
+            console.log('Saved to localStorage:', selectedNum, colors);
+
+             window.location.href = "3D.html";
         }
     </script>
 </body>
+
 </html>

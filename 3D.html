@@ -5,14 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Ice Cream</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <style>
     button {
       position: absolute;
       top: 10px;
       left: 10px;
-
       background-color: #4CAF50;
       color: white;
       padding: 10px 20px;
@@ -30,23 +28,12 @@
 </head>
 
 <body>
-  <a-scene>
-
+  <a-scene root-a-ascene>
     <a-cone id="cone" color="#664216" rotation="180 0 0" position="0 0 -5" radius-bottom="1" height="3"
       roughness="1"></a-cone>
 
-    <script>
-      const colors = ['pink', '#84cbfa', '#d184fa', 'pink', '#84cbfa', '#d184fa', 'pink', '#84cbfa', '#d184fa', 'pink'];
-      for (let i = 0; i < 10; i++) {
-        document.querySelector('a-scene').innerHTML += `
-          <a-sphere id="sphere${i}" color="${colors[i]}" position="0 ${1.5 + i * 1.5} -5" radius="1"></a-sphere>
-          <a-entity id="bottom${i}" geometry="primitive: torus; radius: 0.9; radiusTubular: 0.05" material="color: ${colors[i]}"
-            position="0 ${0.9 + i * 1.5} -5" rotation="90 0 0"></a-entity>
-        `;
-      }
-    </script>
-
   </a-scene>
+
   <button id="Change selection" style="position: absolute; top: 10px; left: 10px; padding: 10px;">Change Ice Cream
     Selection</button>
 
@@ -54,26 +41,42 @@
     document.getElementById('Change selection').addEventListener('click', function () {
       window.location.href = 'index.html';
     });
-
-    window.onload = function () {
-      const savedConeCount = localStorage.getItem('coneCount');
-      const cone = document.getElementById('cone');
-
-      for (let i = 0; i < 10; i++) {
-        const sphere = document.getElementById(`sphere${i}`);
-        const bottom = document.getElementById(`bottom${i}`);
-        
-        if (i < savedConeCount) {
-          cone.setAttribute('visible', true);
-          sphere.setAttribute('visible', true);
-          bottom.setAttribute('visible', true);
-        } else {
-          sphere.setAttribute('visible', false);
-          bottom.setAttribute('visible', false);
-        }
-      }
-    }
   </script>
 </body>
+
+<script>
+  function onSceneInit() {
+    console.log("Scene Loaded!");
+    const savedConeCount = parseInt(localStorage.getItem('coneCount'), 10) || 0;
+    const colors = JSON.parse(localStorage.getItem('scoopColors')) || [];
+
+    console.log(`Saved cone count: ${savedConeCount}`);
+    console.log(`Saved scoop colors:`, colors);
+
+    const scene = document.querySelector('a-scene');
+
+    for (let i = 0; i < savedConeCount; i++) {
+      let sphere = document.createElement('a-sphere');
+      sphere.setAttribute("id", `scoop${i}`);
+      sphere.setAttribute("color", colors[i]);
+      sphere.setAttribute("position", `0 ${1.5 + i * 1.5} -5`);
+      sphere.setAttribute("radius", "1");
+      scene.appendChild(sphere)
+
+      let torus = document.createElement("a-entity");
+
+      torus.setAttribute("geometry", { primitive: 'torus', radius: 0.9, radiusTubular: 0.05 });
+      torus.setAttribute("material", `color: ${colors[i]}`)
+      torus.setAttribute("position", `0 ${0.9 + i * 1.5} -5`)
+      torus.setAttribute("rotation", `90 0 0`)
+
+      scene.appendChild(torus)
+    }
+  };
+
+  AFRAME.registerComponent('root-a-ascene', {
+    init: onSceneInit
+  });
+</script>
 
 </html>
