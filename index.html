@@ -101,9 +101,10 @@
         }
 
         function generateColorPickers() {
-            console.log('generateColorPickers called');
             const selectedNum = document.getElementById('cones').value;
             colorPickersDiv.innerHTML = '';
+
+            let defaultColours = ["FBF8CC", "FDE4CF", "FFCFD2", "F1C0E8", "CFBAF0", "B9FBC0", "98F5E1", "8EECF5", "90DBF4", "A3C4F3"]
 
             for (let i = 0; i < selectedNum; i++) {
                 const colorPickerLabel = document.createElement('label');
@@ -113,6 +114,7 @@
                 colorInput.type = 'color';
                 colorInput.id = `color${i}`;
                 colorInput.classList.add('color-picker');
+                colorInput.value = "#" + defaultColours[i];
 
                 const div = document.createElement('div');
                 div.appendChild(colorPickerLabel);
@@ -123,27 +125,20 @@
         }
 
         function save() {
-            console.log('Save function called');
             const selectedNum = document.getElementById('cones').value;
             if (selectedNum == 0) {
-                console.log('No cones selected!');
-                return; 
+                return;
             }
 
             const colors = [];
             for (let i = 0; i < selectedNum; i++) {
-                console.log(`Adding color for scoop ${i + 1}`);
                 const color = document.getElementById(`color${i}`).value;
-                console.log(`Added color: ${color}`);
                 colors.push(color);
             }
 
             localStorage.setItem('coneCount', selectedNum);
             localStorage.setItem('scoopColors', JSON.stringify(colors));
-
-            console.log('Saved to localStorage:', selectedNum, colors);
-
-             window.location.href = "3D.html";
+            window.location.href = "3D.html";
         }
     </script>
 </body>

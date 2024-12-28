@@ -46,12 +46,8 @@
 
 <script>
   function onSceneInit() {
-    console.log("Scene Loaded!");
     const savedConeCount = parseInt(localStorage.getItem('coneCount'), 10) || 0;
     const colors = JSON.parse(localStorage.getItem('scoopColors')) || [];
-
-    console.log(`Saved cone count: ${savedConeCount}`);
-    console.log(`Saved scoop colors:`, colors);
 
     const scene = document.querySelector('a-scene');
 
